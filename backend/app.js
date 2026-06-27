@@ -21,14 +21,6 @@ app.use(cors({
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-db.connect(err => {
-  if (err) {
-    console.error('خطأ في الاتصال بقاعدة البيانات:', err);
-    return;
-  }
-  console.log('MySQL connected!');
-});
-
 /* ===== توليد ID فريد ===== */
 function generateUniqueUserID(callback) {
   function attempt() {
