@@ -7,7 +7,12 @@ async function checkAuth(req) {
     if (!token) return null;
 
     // استخدام JWT_SECRET من Render
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    if (!process.env.JWT_SECRET) {
+  console.error("JWT_SECRET is missing in Render env");
+  return null;
+}
+
+const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const userId = decoded.user_id;
 
     return new Promise((resolve) => {
